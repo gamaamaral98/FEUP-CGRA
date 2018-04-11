@@ -2,21 +2,30 @@
 /** Represents a plane with nrDivs divisions along both axis, with center at (0,0) */
 class Plane extends CGFobject{
 
-	constructor(scene, nrDivs) 
+	constructor(scene, nrDivs, minS, maxS, minT, maxT) 
 	{
 		super(scene);
 
 		//nrDivs = 1 if not provided
 		nrDivs = typeof nrDivs !== 'undefined' ? nrDivs : 1;
+		minS = typeof minS !== 'undefined' ? minS : 0;
+		maxS = typeof maxS !== 'undefined' ? maxS : 1;
+		minT = typeof minT !== 'undefined' ? minT : 0;
+		maxT = typeof maxT !== 'undefined' ? maxT : 1;
 
 		this.nrDivs = nrDivs;
 		this.patchLength = 1.0 / nrDivs;
+			
+		this.minS = minS;
+		this.maxS = maxS;
+		this.minT = minT;
+		this.maxT = maxT;
 
 		this.initBuffers();
 	};
 
 	initBuffers()
-	{
+	{ 
 		/* example for nrDivs = 3 :
 		(numbers represent index of point in vertices array)
 
@@ -38,8 +47,11 @@ class Plane extends CGFobject{
 		this.normals = [];
 		
 		// Uncomment below to init texCoords
-		//this.texCoords = [];
+		this.texCoords = [];
 
+		var inct = (this.maxT-this.minT)/this.nrDivs;
+		var incs = (this.maxS-this.minS)/this.nrDivs;
+		
 		var yCoord = 0.5;
 
 		for (var j = 0; j <= this.nrDivs; j++) 
@@ -55,7 +67,9 @@ class Plane extends CGFobject{
 				this.normals.push(0,0,1);
 
 				// texCoords should be computed here; uncomment and fill the blanks
-				// this.texCoords.push(..., ...);
+				this.texCoords.push((i*incs), (j*inct)); //acho que e isto
+				//this.texCoords.push((xCoord + 0.5) * (this.maxS - this.minS) + this.minS, (1 - ((yCoord + 0.5) * (this.maxT - this.minT) + this.minT)));
+
 
 				xCoord += this.patchLength;
 			}

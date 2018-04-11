@@ -12,13 +12,14 @@ class MyCilinder extends CGFobject
 		this.stacks = stacks;
 
 		this.initBuffers();
-	};
+	}; 
 
 	initBuffers() 
 	{	
 		this.vertices = [];
 		this.indices = [];
 		this.normals = [];
+		this.texCoords = [];
 		let verts = 0;
 		let normX1, normY1;
 		let normX2, normY2;
@@ -53,6 +54,7 @@ class MyCilinder extends CGFobject
 				this.normals.push(normX1, normY1, 0);
 				this.normals.push(normX2, normY2, 0);
 				this.normals.push(normX2, normY2, 0);
+				
 
 				if( j > 0 ){
 					this.indices.push(verts-3, verts-2, verts-1);

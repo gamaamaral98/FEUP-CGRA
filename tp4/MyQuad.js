@@ -8,6 +8,11 @@ class MyQuad extends CGFobject
 	{
 		super(scene);
 
+		minS = typeof minS !== 'undefined' ? minS : 0;
+		maxS = typeof maxS !== 'undefined' ? maxS : 1;
+		minT = typeof minT !== 'undefined' ? minT : 0;
+		maxT = typeof maxT !== 'undefined' ? maxT : 1;
+
 		this.minS = minS;
 		this.maxS = maxS;
 		this.minT = minT;
@@ -15,7 +20,7 @@ class MyQuad extends CGFobject
 
 		this.initBuffers();
 	};
-
+ 
 	initBuffers() 
 	{
 		this.vertices = [
@@ -29,8 +34,6 @@ class MyQuad extends CGFobject
 		0, 1, 2, 
 		3, 2, 1
 		];
-
-		this.primitiveType = this.scene.gl.TRIANGLES;
 
 		this.normals = [
 		0, 0, 1,
@@ -46,6 +49,7 @@ class MyQuad extends CGFobject
 			this.maxS, this.minT
 		];
 
+		this.primitiveType = this.scene.gl.TRIANGLES;
 		this.initGLBuffers();
 	};
 };

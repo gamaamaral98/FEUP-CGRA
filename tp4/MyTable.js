@@ -5,7 +5,7 @@
  */
 
 class MyTable extends CGFobject
-{
+{ 
 	constructor(scene) 
 	{
 		super(scene);

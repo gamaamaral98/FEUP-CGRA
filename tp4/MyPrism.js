@@ -13,7 +13,7 @@ class MyPrism extends CGFobject
 
 		this.initBuffers();
 	};
-
+ 
 	initBuffers() 
 	{
 		this.vertices = [];
