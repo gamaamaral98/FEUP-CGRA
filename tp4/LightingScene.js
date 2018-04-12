@@ -30,15 +30,15 @@ class LightingScene extends CGFscene
 
 		// Scene elements
 		this.table = new MyTable(this);
-		this.wall = new Plane(this,100);
+		this.wall = new Plane(this);
 		this.leftWall = new MyQuad(this, -0.5, 1.5, -0.5, 1.5);
 		this.floor = new MyQuad(this,0,10,0,12);
-		this.pillar = new MyCilinder(this,8,3);
+		this.pillar = new MyCilinder(this,16,3);
 		this.prism = new MyPrism(this, 8, 20);
 		this.cilinder = new MyCilinder(this, 8, 20);
 		this.lamp = new MyLamp(this, 1500, 20);
 		
-		this.boardA = new Plane(this, BOARD_A_DIVISIONS,0,1,0.1,1);
+		this.boardA = new Plane(this, BOARD_A_DIVISIONS,-0.25,1.25,0,1);
 		this.boardB = new Plane(this, BOARD_B_DIVISIONS);
 
 		// Materials
@@ -79,12 +79,12 @@ class LightingScene extends CGFscene
 		this.windowAppearance.setTextureWrap("CLAMP_TO_EDGE","CLAMP_TO_EDGE");
 
 		this.slidesAppearance = new CGFappearance(this);
+		this.slidesAppearance.loadTexture("../resources/images/slides.png");
+		this.slidesAppearance.setTextureWrap("CLAMP_TO_EDGE","CLAMP_TO_EDGE");
 		this.slidesAppearance.setAmbient(0.8, 0.8, 0.8, 1);
 		this.slidesAppearance.setDiffuse(10, 10, 10, 1);
 		this.slidesAppearance.setSpecular(0.1, 0.1, 0.1, 1);
 		this.slidesAppearance.setShininess(2);
-		this.slidesAppearance.loadTexture("../resources/images/slides.png");
-		this.slidesAppearance.setTextureWrap("CLAMP_TO_EDGE","CLAMP_TO_EDGE");
 
 		this.boardAppearance = new CGFappearance(this);
 		this.boardAppearance.setAmbient(0.8, 0.8, 0.8, 1);
@@ -97,9 +97,9 @@ class LightingScene extends CGFscene
 		this.columnAppearance = new CGFappearance(this);
 		this.columnAppearance.setAmbient(0.9, 0.9, 0.9);
 		this.columnAppearance.setDiffuse(0.2, 0.2, 0.2);
-		this.columnAppearance.setSpecular(0.5, 0.5, 0.5);
+		this.columnAppearance.setSpecular(1, 1, 1);
 		this.columnAppearance.setShininess(200);
-		this.columnAppearance.loadTexture("../resources/images/floor.png");
+		this.columnAppearance.loadTexture("../resources/images/cylinderTexture.jpg");
 		this.columnAppearance.setTextureWrap("CLAMP_TO_EDGE", "CLAMP_TO_EDGE");
 	};
 
@@ -266,18 +266,21 @@ class LightingScene extends CGFscene
 
 		//this.cilinder.display();
 
+		//Lamp 1
 		this.pushMatrix();
 			this.translate(5,7,8);
 			this.rotate(180*degToRad,0,1,1);
 			this.lamp.display();
 		this.popMatrix();
 
+		//lamp 2
 		this.pushMatrix();
 			this.translate(12,7,8);
 			this.rotate(180*degToRad,0,1,1);
 			this.lamp.display();
 		this.popMatrix();
 
+		//Column
 		this.pushMatrix();
 			this.translate(2,0,14);
 			this.rotate(180*degToRad,0,1,1);
